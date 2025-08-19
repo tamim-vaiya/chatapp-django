@@ -2,7 +2,11 @@
 
 {% block body %}
     {{ chatroom.name }}
-    <div id="chat-messages"></div>
+    <div id="chat-messages">
+        {% for message in messages %}
+            {{ message.user }} : {{ message.message_content }} </br>
+        {% endfor %}
+    </div>
     <form method="POST">
         {% csrf_token %}
         <input id="message-input" type="text" name="message" placeholder="Enter message...">
