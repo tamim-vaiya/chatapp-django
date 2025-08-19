@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>List of Rooms:</h1>
-    {% for chatroom in chatrooms %}
-        <a href="{% url 'chatroom' chatroom.slug %}">{{ chatroom.name }}</a> <br>
-    {% endfor %}
+    <h1 class="text-2xl font-bold mb-4">Available Rooms</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {% for chatroom in chatrooms %}
+            <a href="{% url 'chatroom' chatroom.slug %}"
+               class="block p-4 bg-white rounded-xl shadow hover:shadow-md transition border border-gray-200">
+                <p class="text-lg font-semibold text-indigo-600">{{ chatroom.name }}</p>
+            </a>
+        {% empty %}
+            <p class="text-gray-500">No chat rooms available yet.</p>
+        {% endfor %}
+    </div>
 {% endblock body %}
